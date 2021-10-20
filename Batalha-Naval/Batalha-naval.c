@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 #include <stdio.h> 
 #include <stdlib.h>
 #include <ctype.h> 
 #include <string.h>
+=======
+#include <stdio.h> //Inclusao de biblioteca de funcoes basicas em C
+#include <stdlib.h> //Inclusao de biblioteca de funcoes basicas em C
+#include <ctype.h> //Inclusao de biblioteca para utilizacao de toupper, afim de reduzir erros do usuario   
+#include <string.h>//Inclusao de biblioteca de strings em C
+>>>>>>> 7f277f572fe135787ea257d85e3b7917dc49c1aa
 #include "Bat.h"
 
 int main(int argc, char *argv[])
