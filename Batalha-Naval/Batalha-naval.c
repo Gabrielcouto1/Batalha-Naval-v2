@@ -3,30 +3,26 @@
 #include <ctype.h> 
 #include <string.h>
 #include "Bat.h"
+#include "Bat.c"
 
 int main(int argc, char *argv[])
 {
-    int err=argsOk(argc,argv);
-    int t=argT(argv);
-    int MD=argMD(argv);
+    if(argsOk(argc,argv)!=0){
+        errorMSG(argsOk(argc,argv));
+        return argsOk(argc,argv);
+    }
     char rep[o][o];
     char oceano[o][o];
     int q_d=d;
     int q_s=s; 
-    int q_t=t;
+    int q_t=argT(argv);
     int coluna_ataque=0;
     char linha_ataque=' '; 
     int linha_ataque_1=0;
-    int tiro=0;
 
-    if(err!=0){
-        errorMSG(err);
-        return err;
-    }
     initOcean(oceano);
     submarinesIntoOcean(rep);
-    if(MD==CORR)
-        showSubmarines(rep,oceano); 
+    showSubmarines(rep,oceano,argv); 
     showOcean(oceano);  
     showInventory(q_d,q_s,q_t);
 
@@ -36,8 +32,7 @@ int main(int argc, char *argv[])
             printf("Voce digitou um setor do oceano inexistente.\n");
             return 1;
         }
-        tiro=hitShoot(coluna_ataque,linha_ataque_1,rep,oceano);
-        didHit(tiro,&q_t,&q_s);
+        didHit(hitShoot(coluna_ataque,linha_ataque_1,rep,oceano),&q_t,&q_s);
         showOcean(oceano);
         showInventory(q_d,q_s,q_t);
     } while((q_t>0)&&((q_d>0)||(q_s>0)));
@@ -46,4 +41,3 @@ int main(int argc, char *argv[])
     
     return 0;
 }
-#include "Bat.c"
